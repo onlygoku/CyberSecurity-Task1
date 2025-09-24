@@ -1,0 +1,65 @@
+=========================================================
+ Nmap Scan Report 
+=========================================================
+
+---------------------------------
+I. Raw Nmap Scan Output
+---------------------------------
+
+Nmap 7.95 scan initiated Mon Sep 22 22:19:14 2025 as: nmap -sS -Pn -T4 --open -F -oN nmap_step1_common.txt 192.168.31.246/24
+Nmap scan report for jiofiber.local.html (192.168.31.1)
+Host is up (0.034s latency).
+Not shown: 96 closed tcp ports (reset)
+PORT      STATE SERVICE
+53/tcp    open  domain
+80/tcp    open  http
+443/tcp   open  https
+8080/tcp  open  http-proxy
+MAC Address: 7C:BF:77:B4:6F:04 (Speedtech)
+
+Nmap scan report for 192.168.31.246
+Host is up (0.0018s latency).
+Not shown: 97 closed tcp ports (reset)
+PORT    STATE SERVICE
+135/tcp open  msrpc
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap done at Mon Sep 22 22:19:35 2025 -- 256 IP addresses (6 hosts up) scanned in 20.95 seconds
+
+
+---------------------------------
+II. Analysis of Scan Results
+---------------------------------
+
+Based on the scan, two primary devices with open ports were identified.
+
+Device 1: Router/Gateway
+
+* IP Address: 192.....
+* Hostname: jiofiber.local.html
+* MAC Address Manufacturer: Speedtech
+
+Open Ports Found:
+
+* Port 53 (domain): This is the DNS (Domain Name System) service. It is essential for translating domain names (like google.com) to IP addresses. This is a standard and expected service for a router.
+* Port 80 (http) & 443 (https): These ports are for web traffic. They are used to host the router's web-based administration panel, allowing you to change Wi-Fi settings, etc. Port 443 is the secure (encrypted) version.
+* Port 8080 (http-proxy): This is commonly used as an alternative port for web services or a web proxy.
+
+Potential Security Risks:
+
+* The primary risk for this device is a weak administrative password. Since ports 80, 443, and 8080 provide access to the router's configuration page, a default or easy-to-guess password could allow an attacker on the network to take control of the router.
+
+Device 2: Windows Machine
+
+IP Address: 192.......
+
+Open Ports Found:
+
+* Port 135 (msrpc):Microsoft Remote Procedure Call. This service is used by Windows to manage services and processes across a network.
+* Port 139 (netbios-ssn): NetBIOS Session Service. An older service used for file and printer sharing in Windows.
+* Port 445 (microsoft-ds): This is the modern port for Server Message Block (SMB), the primary protocol for file sharing on Windows networks.
+
+Potential Security Risks:
+
+The services running on these ports, particularly SMB on port 445, are a significant potential security risk. Historically, SMB has had major vulnerabilities (like EternalBlue, used by the WannaCry ransomware). If this Windows machine is not fully patched and updated, these open ports could be exploited by malware or an attacker to gain remote access or spread across the network. Exposing file-sharing ports is generally discouraged unless strictly necessary and properly secured.

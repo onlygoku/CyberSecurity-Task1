@@ -1,0 +1,20 @@
+# Nmap 7.95 scan initiated Mon Sep 22 22:19:14 2025 as: nmap -sS -Pn -T4 --open -F -oN nmap_step1_common.txt 192.168.31.246/24
+Nmap scan report for jiofiber.local.html (192.168.31.1)
+Host is up (0.034s latency).
+Not shown: 96 closed tcp ports (reset)
+PORT     STATE SERVICE
+53/tcp   open  domain
+80/tcp   open  http
+443/tcp  open  https
+8080/tcp open  http-proxy
+MAC Address: 7C:BF:77:B4:6F:04 (Speedtech)
+
+Nmap scan report for 192.168.31.246
+Host is up (0.0018s latency).
+Not shown: 97 closed tcp ports (reset)
+PORT    STATE SERVICE
+135/tcp open  msrpc
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+# Nmap done at Mon Sep 22 22:19:35 2025 -- 256 IP addresses (6 hosts up) scanned in 20.95 seconds
